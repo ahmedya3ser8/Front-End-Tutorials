@@ -1,0 +1,37 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.serial {
+  width: 200px;
+  height: 60.8px;
+  background-color: #eee;
+  padding: 20px;
+  margin: 20px auto 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.generate {
+  display: block;
+  background-color: #f44336;
+  width: fit-content;
+  margin: 20px auto;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.generate:hover {
+  background-color: #e83123;
+}
