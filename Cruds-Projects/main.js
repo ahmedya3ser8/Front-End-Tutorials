@@ -52,23 +52,24 @@ submit.onclick = function() {
     count: count.value,
     category: category.value.toLowerCase(),
   }
-  if (mood === "create") {
-    if (newProduct.count > 1) {
-      for (let i = 0; i < newProduct.count; i++) {
+  if (title.value != "" && price.value != "" && category.value != "" && newProduct.count < 100) {
+    if (mood === "create") {
+      if (newProduct.count > 1) {
+        for (let i = 0; i < newProduct.count; i++) {
+          dataProduct.push(newProduct);
+        }
+      } else {
         dataProduct.push(newProduct);
       }
     } else {
-      dataProduct.push(newProduct);
+      dataProduct[tmp] = newProduct;
+      mood = "create";
+      count.style.display = "block";
+      submit.innerHTML = "create";
     }
-  } else {
-    dataProduct[tmp] = newProduct;
-    mood = "create";
-    count.style.display = "block";
-    submit.innerHTML = "create";
+    ClearData();
   }
-
   localStorage.setItem("product", JSON.stringify(dataProduct));
-  ClearData();
   showData();
 }
 
@@ -161,11 +162,10 @@ function getSearchMood(id) {
   let search = document.getElementById("search");
   if (id == "search-title") {
     searchMood = "title";
-    search.placeholder = "Search By Title";
   } else {
     searchMood = "category";
-    search.placeholder = "Search By Category";
   }
+  search.placeholder = "Search By " + searchMood;
   search.focus();
   search.value = "";
   showData();
