@@ -40,17 +40,22 @@ body {
   border-bottom: 4px solid #222;
   margin: auto;
   position: relative;
+  display: none;
 }
 
-.hangman-draw .the-stand::before {
-  content: "";
+.hangman-draw .the-stand {
   position: absolute;
   width: 4px;
   height: 100%;
   background-color: #222;
   left: 50%;
   transform: translateX(-50%);
+  display: none;
 } 
+
+.hangman-draw .the-hang {
+  display: none;
+}
 
 .hangman-draw .the-hang::before {
   content: "";
@@ -80,6 +85,7 @@ body {
   border: 4px dashed #222;
   left: 95px;
   top: 45px;
+  display: none;
 }
 
 .hangman-draw .the-man .head {
@@ -90,6 +96,7 @@ body {
   position: absolute;
   left: 105px;
   top: 55px;
+  display: none;
 }
 
 .hangman-draw .the-man .body {
@@ -99,6 +106,11 @@ body {
   position: absolute;
   left: 130px;
   top: 102px;
+  display: none;
+}
+
+.hangman-draw .the-man .hands {
+  display: none;
 }
 
 .hangman-draw .the-man .hands::before,
@@ -121,6 +133,10 @@ body {
   transform: rotate(-30deg);
 }
 
+.hangman-draw .the-man .legs {
+  display: none;
+}
+
 .hangman-draw .the-man .legs::before,
 .hangman-draw .the-man .legs::after {
   content: "";
@@ -141,12 +157,48 @@ body {
   transform: rotate(30deg);
 }
 
+.hangman-draw.wrong-1 .the-draw {
+  display: block;
+}
+
+.hangman-draw.wrong-2 .the-stand {
+  display: block;
+}
+
+.hangman-draw.wrong-3 .the-hang {
+  display: block;
+}
+
+.hangman-draw.wrong-4 .the-rope {
+  display: block;
+}
+
+.hangman-draw.wrong-5 .head {
+  display: block;
+}
+
+.hangman-draw.wrong-6 .body {
+  display: block;
+}
+
+.hangman-draw.wrong-7 .hands {
+  display: block;
+}
+
+.hangman-draw.wrong-8 .legs {
+  display: block;
+}
+
 .letters {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   flex: 1;
   padding: 15px;
+}
+
+.letters.finished {
+  pointer-events: none;
 }
 
 .letters .letter-box {
@@ -161,6 +213,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.letters .letter-box.clicked {
+  background-color: #222;
+  opacity: .2;
+  pointer-events: none;
 }
 
 .letters-guess {
@@ -201,4 +259,17 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.popup {
+  position: fixed;
+  background-color: #009688f0;
+  padding: 80px 20px;
+  width: 80%;
+  top: 15%;
+  left: 12%;
+  text-align: center;
+  font-size: 40px;
+  border: 1px solid #CCC;
+  color: #FFF;
 }
