@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+}
+
+.page {
+  height: 100vh;
+}
+.page::before {
+  content: "";
+  position: fixed;
+  width: 300%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) skew(0, -10deg);
+  background-color: #0075ff;
+  border-radius: 50%;
+  z-index: -1;
+  animation: wave 5s ease-in-out infinite alternate;
+}
+.card {
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ddd inset;
+}
+.card img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+.card h2,
+.card p {
+  margin: 0;
+}
+@keyframes wave {
+  from {
+    transform: translateX(-50%) skew(0, -10deg);
+  }
+  to {
+    transform: translateX(-30%) skew(10deg, -0);
+  }
+}
