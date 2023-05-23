@@ -5,9 +5,11 @@ let quizArea = document.querySelector(".quiz-area");
 let answersArea = document.querySelector(".answers-area");
 let submitButton = document.querySelector(".submit-button");
 let results = document.querySelector(".results");
+let countDownElement = document.querySelector(".countdown");
 
 let currentIndex = 0;
 let rightAnswer = 0;
+let countDownInterval;
 
 function getQuestion() {
   let myRequest = new XMLHttpRequest();
@@ -17,6 +19,7 @@ function getQuestion() {
       let questionCount = QuestionObject.length;
       createBullets(questionCount);
       addData(QuestionObject[currentIndex], questionCount);
+      countdown(3, questionCount);
       submitButton.onclick = () => {
         let theRightAnswer = QuestionObject[currentIndex].right_answer;
         currentIndex++;
@@ -24,6 +27,8 @@ function getQuestion() {
         quizArea.innerHTML = "";
         answersArea.innerHTML = "";
         addData(QuestionObject[currentIndex], questionCount);
+        clearInterval(countDownInterval);
+        countdown(3, questionCount);
         handeleBullets();
         showResults(questionCount);
       }
@@ -119,5 +124,22 @@ function showResults(count) {
     results.style.padding = "10px";
     results.style.backgroundColor = "#fff";
     results.style.marginTop = "10px";
+  }
+}
+
+function countdown(duration, count) {
+  if (currentIndex < count) {
+    let minutes, seconds;
+    countDownInterval = setInterval(function() {
+      minutes = parseInt(duration / 60);
+      seconds = parseInt(duration % 60);
+      minutes = minutes < 10 ? `0${minutes}` : minutes;
+      seconds = seconds < 10 ? `0${seconds}` : seconds;
+      countDownElement.innerHTML = `${minutes}:${seconds}`;
+      if (--duration < 0) {
+        clearInterval(countDownInterval);
+        submitButton.click();
+      }
+    }, 1000);
   }
 }
